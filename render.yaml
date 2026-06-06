@@ -3,8 +3,7 @@ services:
     name: hammad-project
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build && true
-
+    buildCommand: npm install && npm run build
     startCommand: node .output/server/index.mjs
     envVars:
       - key: NODE_ENV
