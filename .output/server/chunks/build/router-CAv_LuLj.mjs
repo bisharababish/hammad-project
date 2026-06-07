@@ -1,4 +1,4 @@
-import { e as compileDecodeCharMap, h as createLRUCache, a0 as trimPath, Z as rewriteBasepath, f as composeRewrites, Q as processRouteTree, P as processRouteMasks, Y as resolvePath, c as cleanPath, a2 as trimPathRight, g as createControlledPromise, N as parseHref, p as executeRewriteInput, A as isDangerousProtocol, T as redirect, G as isRedirect, E as isNotFound, t as findSingleMatch, k as deepEqual, D as DEFAULT_PROTOCOL_ALLOWLIST, b as buildRouteBranch, y as interpolatePath, M as nullReplaceEqualDeep, V as replaceEqualDeep$1, K as last, j as decodePath, r as findFlatMatch, u as functionalUpdate$1, s as findRouteMatch, F as isPromise, z as invariant, _ as rootRouteId, a4 as useRouter, J as jsxRuntimeExports, S as reactExports, x as hasKeys, q as executeRewriteOutput, a as arraysEqual, O as Outlet, R as React, o as exactPathTest, U as removeTrailingSlash, C as isModuleNotFoundError, H as isServer, l as dummyMatchContext, L as matchContext, w as getDefaultExportFromCjs, n as escapeHtml, B as isInlinableStylesheet, v as getAssetCrossOrigin, a3 as useHydrated, a1 as trimPathLeft, I as joinPaths, W as requireReactDom, X as resolveManifestAssetLink, d as commonjsGlobal, m as encodePathLikeUrl } from "./server-D0hi5enF.mjs";
+import { e as compileDecodeCharMap, h as createLRUCache, a0 as trimPath, Z as rewriteBasepath, f as composeRewrites, Q as processRouteTree, P as processRouteMasks, Y as resolvePath, c as cleanPath, a2 as trimPathRight, g as createControlledPromise, N as parseHref, p as executeRewriteInput, A as isDangerousProtocol, T as redirect, G as isRedirect, E as isNotFound, t as findSingleMatch, k as deepEqual, D as DEFAULT_PROTOCOL_ALLOWLIST, b as buildRouteBranch, y as interpolatePath, M as nullReplaceEqualDeep, V as replaceEqualDeep$1, K as last, j as decodePath, r as findFlatMatch, u as functionalUpdate$1, s as findRouteMatch, F as isPromise, z as invariant, _ as rootRouteId, a4 as useRouter, J as jsxRuntimeExports, S as reactExports, x as hasKeys, q as executeRewriteOutput, a as arraysEqual, O as Outlet, R as React, o as exactPathTest, U as removeTrailingSlash, C as isModuleNotFoundError, H as isServer, l as dummyMatchContext, L as matchContext, w as getDefaultExportFromCjs, n as escapeHtml, B as isInlinableStylesheet, v as getAssetCrossOrigin, a3 as useHydrated, a1 as trimPathLeft, I as joinPaths, W as requireReactDom, X as resolveManifestAssetLink, d as commonjsGlobal, m as encodePathLikeUrl } from "./server-BMK628Pq.mjs";
 import "node:async_hooks";
 import "node:stream";
 import "node:stream/web";
@@ -26859,44 +26859,84 @@ function Footer() {
   ] });
 }
 function NotFoundComponent() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex min-h-screen items-center justify-center px-4", style: { background: "var(--background)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-md text-center", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-7xl font-bold gold-gradient-text", children: "404" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-4 text-sm", style: { color: "var(--text-muted)" }, children: "Page not found" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/", className: "mt-6 inline-block btn-primary", children: "Go home" })
-  ] }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      className: "flex min-h-screen items-center justify-center px-4",
+      style: { background: "var(--background)" },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-md text-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-7xl font-bold gold-gradient-text", children: "404" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-4 text-sm", style: { color: "var(--text-muted)" }, children: "Page not found" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/", className: "mt-6 inline-block btn-primary", children: "Go home" })
+      ] })
+    }
+  );
 }
 function ErrorComponent({ error, reset }) {
   const router2 = useRouter();
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex min-h-screen items-center justify-center px-4", style: { background: "var(--background)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-md text-center", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-xl font-semibold", style: { color: "var(--gold-light)" }, children: "Something went wrong" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-2 text-sm", style: { color: "var(--text-muted)" }, children: error.message }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "btn-primary mt-6", onClick: () => {
-      router2.invalidate();
-      reset();
-    }, children: "Try again" })
-  ] }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      className: "flex min-h-screen items-center justify-center px-4",
+      style: { background: "var(--background)" },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-md text-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "h1",
+          {
+            className: "text-xl font-semibold",
+            style: { color: "var(--gold-light)" },
+            children: "Something went wrong"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-2 text-sm", style: { color: "var(--text-muted)" }, children: error.message }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            className: "btn-primary mt-6",
+            onClick: () => {
+              router2.invalidate();
+              reset();
+            },
+            children: "Try again"
+          }
+        )
+      ] })
+    }
+  );
 }
-const Route$6 = createRootRouteWithContext()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "مغسلة البرنس | Al-Prince Car Wash" },
-      { name: "description", content: "خدمات غسيل وتلميع سيارات فاخرة — Premium car wash and detailing services." }
-    ],
-    links: [
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-      { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" }
-    ]
-  }),
-  shellComponent: RootShell,
-  component: RootComponent,
-  notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent
-});
+const Route$6 = createRootRouteWithContext()(
+  {
+    head: () => ({
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { title: "مغسلة البرنس | Al-Prince Car Wash" },
+        {
+          name: "description",
+          content: "خدمات غسيل وتلميع سيارات فاخرة — Premium car wash and detailing services."
+        }
+      ],
+      links: [
+        { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+        { rel: "stylesheet", href: appCss },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        {
+          rel: "preconnect",
+          href: "https://fonts.gstatic.com",
+          crossOrigin: "anonymous"
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        }
+      ]
+    }),
+    shellComponent: RootShell,
+    component: RootComponent,
+    notFoundComponent: NotFoundComponent,
+    errorComponent: ErrorComponent
+  }
+);
 function RootShell({ children }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("html", { lang: "ar", dir: "rtl", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("head", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(HeadContent, {}) }),
@@ -26910,7 +26950,9 @@ function RootComponent() {
   const { queryClient } = Route$6.useRouteContext();
   const router2 = useRouter();
   reactExports.useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
+    const {
+      data: { subscription }
+    } = supabase.auth.onAuthStateChange(() => {
       router2.invalidate();
     });
     return () => subscription.unsubscribe();
@@ -26919,14 +26961,21 @@ function RootComponent() {
 }
 function AppShell() {
   const { dir } = useI18n();
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { dir, style: { minHeight: "100vh", background: "var(--background)" }, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("main", { style: { paddingTop: 68 }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { theme: "light", position: "bottom-center", richColors: true })
-  ] });
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      dir,
+      style: { minHeight: "100vh", background: "var(--background)" },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("main", { style: { paddingTop: 68 }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { theme: "light", position: "bottom-center", richColors: true })
+      ]
+    }
+  );
 }
-const $$splitComponentImporter$5 = () => import("./services-OmhlTM0C.mjs");
+const $$splitComponentImporter$5 = () => import("./services-sn0ZhWS5.mjs");
 const Route$5 = createFileRoute("/services")({
   head: () => ({
     meta: [{
@@ -26938,7 +26987,7 @@ const Route$5 = createFileRoute("/services")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-const $$splitComponentImporter$4 = () => import("./reviews-CfQ1yX2_.mjs");
+const $$splitComponentImporter$4 = () => import("./reviews-B8PjjeHS.mjs");
 const Route$4 = createFileRoute("/reviews")({
   head: () => ({
     meta: [{
@@ -26950,7 +26999,7 @@ const Route$4 = createFileRoute("/reviews")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-const $$splitComponentImporter$3 = () => import("./login-C8MuomRk.mjs");
+const $$splitComponentImporter$3 = () => import("./login-CgrJrnYE.mjs");
 const Route$3 = createFileRoute("/login")({
   head: () => ({
     meta: [{
@@ -26959,7 +27008,7 @@ const Route$3 = createFileRoute("/login")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-const $$splitComponentImporter$2 = () => import("./booking-Bc8-NyZt.mjs");
+const $$splitComponentImporter$2 = () => import("./booking-BRmE788C.mjs");
 const Route$2 = createFileRoute("/booking")({
   head: () => ({
     meta: [{
@@ -26971,7 +27020,7 @@ const Route$2 = createFileRoute("/booking")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-const $$splitComponentImporter$1 = () => import("./admin-BaCelGnJ.mjs");
+const $$splitComponentImporter$1 = () => import("./admin-DkTlikks.mjs");
 const Route$1 = createFileRoute("/admin")({
   head: () => ({
     meta: [{
@@ -26980,7 +27029,7 @@ const Route$1 = createFileRoute("/admin")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-const $$splitComponentImporter = () => import("./index-C509f2ti.mjs");
+const $$splitComponentImporter = () => import("./index-BZ0lVEOS.mjs");
 const Route2 = createFileRoute("/")({
   head: () => ({
     meta: [{

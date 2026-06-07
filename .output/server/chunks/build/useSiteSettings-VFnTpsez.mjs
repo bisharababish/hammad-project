@@ -1,5 +1,5 @@
-import { u as useQuery } from "./useQuery-BM1s7Agb.mjs";
-import { k as supabase } from "./router-DWRRqTVM.mjs";
+import { u as useQuery } from "./useQuery-Bpq8_YCx.mjs";
+import { k as supabase } from "./router-CAv_LuLj.mjs";
 function useSiteSettings() {
   return useQuery({
     queryKey: ["site-settings"],

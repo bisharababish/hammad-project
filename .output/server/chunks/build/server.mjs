@@ -53,7 +53,7 @@ function renderErrorPage() {
 let serverEntryPromise;
 async function getServerEntry() {
   if (!serverEntryPromise) {
-    serverEntryPromise = import("./server-D0hi5enF.mjs").then((n) => n.$).then(
+    serverEntryPromise = import("./server-BMK628Pq.mjs").then((n) => n.$).then(
       (m) => m.default ?? m
     );
   }
@@ -90,7 +90,9 @@ async function normalizeCatastrophicSsrResponse(response) {
   if (!isCatastrophicSsrErrorBody(body, response.status)) {
     return response;
   }
-  console.error(consumeLastCapturedError() ?? new Error(`h3 swallowed SSR error: ${body}`));
+  console.error(
+    consumeLastCapturedError() ?? new Error(`h3 swallowed SSR error: ${body}`)
+  );
   return brandedErrorResponse();
 }
 const server = {

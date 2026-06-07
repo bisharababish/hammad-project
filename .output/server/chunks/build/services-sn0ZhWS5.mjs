@@ -1,6 +1,6 @@
-import { J as jsxRuntimeExports } from "./server-D0hi5enF.mjs";
-import { o as useI18n, q as useNavigate, c as createLucideIcon, k as supabase } from "./router-DWRRqTVM.mjs";
-import { u as useQuery } from "./useQuery-BM1s7Agb.mjs";
+import { J as jsxRuntimeExports } from "./server-BMK628Pq.mjs";
+import { o as useI18n, q as useNavigate, c as createLucideIcon, k as supabase } from "./router-CAv_LuLj.mjs";
+import { u as useQuery } from "./useQuery-Bpq8_YCx.mjs";
 import "node:async_hooks";
 import "node:stream";
 import "node:stream/web";
@@ -116,11 +116,14 @@ function ServicesPage() {
               color: "var(--gold-dark)"
             }, children: [
               Number(s.price),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: {
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: {
                 fontSize: 14,
                 fontWeight: 400,
                 color: "var(--text-muted)"
-              }, children: " ₪" })
+              }, children: [
+                " ",
+                "₪"
+              ] })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "btn-primary !py-2.5 !px-5 !text-[12px]", onClick: () => nav({
               to: "/booking",

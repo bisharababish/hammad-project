@@ -1,5 +1,5 @@
-import { v as useQueryClient, b as notifyManager, n as noop$1, j as shouldThrowError, S as Subscribable, p as pendingThenable, d as resolveQueryBoolean, s as shallowEqualObjects, g as resolveStaleTime, l as timeoutManager, f as fetchState, r as replaceData } from "./router-DWRRqTVM.mjs";
-import { S as reactExports } from "./server-D0hi5enF.mjs";
+import { v as useQueryClient, b as notifyManager, n as noop$1, j as shouldThrowError, S as Subscribable, p as pendingThenable, d as resolveQueryBoolean, s as shallowEqualObjects, g as resolveStaleTime, l as timeoutManager, f as fetchState, r as replaceData } from "./router-CAv_LuLj.mjs";
+import { S as reactExports } from "./server-BMK628Pq.mjs";
 var QueryObserver = class extends Subscribable {
   constructor(client, options) {
     super();
