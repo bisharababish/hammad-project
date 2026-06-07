@@ -77,6 +77,8 @@ export const t: Dict = {
     "login.noAccount": { ar: "ليس لديك حساب؟ سجل الآن", en: "No account? Sign up" },
     "login.welcome": { ar: "مرحباً بعودتك", en: "Welcome back" },
     "login.checkEmail": { ar: "تحقق من بريدك الإلكتروني لتأكيد الحساب", en: "Check your email to confirm your account" },
+    "login.adminPortal": { ar: "دخول المسؤول", en: "Admin login" },
+    "login.adminHint": { ar: "سجّل الدخول للوصول إلى لوحة الإدارة", en: "Sign in to access the admin dashboard" },
     "admin.title": { ar: "لوحة الإدارة", en: "Admin Dashboard" },
     "admin.bookings": { ar: "جميع الحجوزات", en: "All Bookings" },
     "admin.services": { ar: "الخدمات", en: "Services" },

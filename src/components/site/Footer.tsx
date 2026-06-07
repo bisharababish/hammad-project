@@ -24,9 +24,10 @@ export function Footer() {
               { to: "/services", label: tr("nav.services") },
               { to: "/booking", label: tr("nav.booking") },
               { to: "/reviews", label: tr("nav.reviews") },
-            ].map(({ to, label }) => (
-              <Link key={to} to={to} style={{ fontSize: 13, color: "var(--text-muted)" }} className="hover:opacity-80">
-                {label}
+              { to: "/login", label: tr("login.adminPortal"), search: { redirect: "/admin" } as const },
+            ].map((item) => (
+              <Link key={item.to} to={item.to} search={"search" in item ? item.search : undefined} style={{ fontSize: 13, color: "var(--text-muted)" }} className="hover:opacity-80">
+                {item.label}
               </Link>
             ))}
           </div>

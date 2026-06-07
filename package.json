@@ -10,7 +10,8 @@
     "start": "node .output/server/index.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "setup-admin": "node scripts/setup-admin.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

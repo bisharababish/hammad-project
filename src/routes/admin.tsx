@@ -72,8 +72,8 @@ function AdminPage() {
         <p style={{ color: "var(--text-light)" }} className="mb-4">
           {tr("nav.login")}
         </p>
-        <Link to="/login" className="btn-primary">
-          {tr("nav.login")}
+        <Link to="/login" search={{ redirect: "/admin" }} className="btn-primary">
+          {tr("login.adminPortal")}
         </Link>
       </div>
     );

@@ -5,14 +5,21 @@ import { Crown, Mail, Lock, User as UserIcon, Phone } from "lucide-react";
 import { useI18n } from "@/contexts/I18nContext";
 import { supabase } from "@/integrations/supabase/client";
 
+type SearchParams = { redirect?: string };
+
 export const Route = createFileRoute("/login")({
   head: () => ({ meta: [{ title: "Sign in — Al-Prince" }] }),
+  validateSearch: (s: Record<string, unknown>): SearchParams => ({
+    redirect: typeof s.redirect === "string" ? s.redirect : undefined,
+  }),
   component: LoginPage,
 });
 
 function LoginPage() {
-  const { tr, lang } = useI18n();
+  const { tr } = useI18n();
   const nav = useNavigate();
+  const { redirect } = Route.useSearch();
+  const isAdminLogin = redirect === "/admin";
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -42,7 +49,13 @@ function LoginPage() {
         });
         if (error) throw error;
         toast.success(tr("login.welcome"));
-        nav({ to: "/" });
+        nav({
+          to: isAdminLogin
+            ? "/admin"
+            : redirect?.startsWith("/")
+              ? redirect
+              : "/",
+        });
       }
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Error");
@@ -53,9 +66,10 @@ function LoginPage() {
 
   async function handleGoogle() {
     setLoading(true);
+    const after = isAdminLogin ? "/admin" : "/";
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: `${window.location.origin}/` },
+      options: { redirectTo: `${window.location.origin}${after}` },
     });
     if (error) {
       toast.error(error.message || "Google sign-in failed");
@@ -77,9 +91,18 @@ function LoginPage() {
             style={{ fontFamily: "Cairo", fontSize: 26 }}
           >
             <span className="gold-gradient-text">
-              {mode === "signin" ? tr("login.title") : tr("login.signup")}
+              {isAdminLogin
+                ? tr("login.adminPortal")
+                : mode === "signin"
+                  ? tr("login.title")
+                  : tr("login.signup")}
             </span>
           </h1>
+          {isAdminLogin && (
+            <p className="mt-2 text-xs" style={{ color: "var(--text-muted)" }}>
+              {tr("login.adminHint")}
+            </p>
+          )}
         </div>
 
         <button
@@ -173,35 +196,46 @@ function LoginPage() {
           >
             {loading
               ? "..."
-              : mode === "signin"
-                ? tr("login.title")
-                : tr("login.signup")}
+              : isAdminLogin
+                ? tr("login.adminPortal")
+                : mode === "signin"
+                  ? tr("login.title")
+                  : tr("login.signup")}
           </button>
         </form>
 
-        <button
-          onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-          className="w-full mt-5 text-xs"
-          style={{ color: "var(--text-muted)", fontFamily: "Poppins" }}
-        >
-          {mode === "signin" ? tr("login.noAccount") : tr("login.haveAccount")}
-        </button>
+        {!isAdminLogin && (
+          <button
+            onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
+            className="w-full mt-5 text-xs"
+            style={{ color: "var(--text-muted)", fontFamily: "Poppins" }}
+          >
+            {mode === "signin" ? tr("login.noAccount") : tr("login.haveAccount")}
+          </button>
+        )}
 
-        <p
-          className="mt-4 text-center text-xs leading-relaxed"
-          style={{ color: "var(--text-muted)" }}
-        >
-          {lang === "ar"
-            ? "مسؤول؟ سجّل الدخول بنفس البريد الذي أضفته في Supabase، ثم افتح /admin"
-            : "Admin? Sign in with the same email you promoted in Supabase, then open /admin"}
-        </p>
+        {!isAdminLogin && (
+          <Link
+            to="/login"
+            search={{ redirect: "/admin" }}
+            className="mt-5 flex items-center justify-center gap-1.5 w-full py-2.5 rounded-[10px] text-xs font-semibold transition-colors"
+            style={{
+              fontFamily: "Poppins",
+              color: "var(--gold-dark)",
+              border: "1px solid var(--border-c)",
+              background: "var(--surface-alt)",
+            }}
+          >
+            {tr("login.adminPortal")} →
+          </Link>
+        )}
 
         <div
           className="mt-4 text-center text-xs"
           style={{ color: "var(--text-muted)" }}
         >
           <Link to="/" style={{ color: "var(--gold-dark)" }}>
-            {lang === "ar" ? "العودة للرئيسية" : "Back to home"}
+            {tr("nav.home")} ←
           </Link>
         </div>
       </div>
