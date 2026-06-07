@@ -1,4 +1,4 @@
-import { e as compileDecodeCharMap, h as createLRUCache, a0 as trimPath, Z as rewriteBasepath, f as composeRewrites, Q as processRouteTree, P as processRouteMasks, Y as resolvePath, c as cleanPath, a2 as trimPathRight, g as createControlledPromise, N as parseHref, p as executeRewriteInput, A as isDangerousProtocol, T as redirect, G as isRedirect, E as isNotFound, t as findSingleMatch, k as deepEqual, D as DEFAULT_PROTOCOL_ALLOWLIST, b as buildRouteBranch, y as interpolatePath, M as nullReplaceEqualDeep, V as replaceEqualDeep$1, K as last, j as decodePath, r as findFlatMatch, u as functionalUpdate$1, s as findRouteMatch, F as isPromise, z as invariant, _ as rootRouteId, a4 as useRouter, J as jsxRuntimeExports, S as reactExports, x as hasKeys, q as executeRewriteOutput, a as arraysEqual, O as Outlet, R as React, o as exactPathTest, U as removeTrailingSlash, C as isModuleNotFoundError, H as isServer, l as dummyMatchContext, L as matchContext, w as getDefaultExportFromCjs, n as escapeHtml, B as isInlinableStylesheet, v as getAssetCrossOrigin, a3 as useHydrated, a1 as trimPathLeft, I as joinPaths, W as requireReactDom, X as resolveManifestAssetLink, d as commonjsGlobal, m as encodePathLikeUrl } from "./server-BMK628Pq.mjs";
+import { e as compileDecodeCharMap, h as createLRUCache, a0 as trimPath, Z as rewriteBasepath, f as composeRewrites, Q as processRouteTree, P as processRouteMasks, Y as resolvePath, c as cleanPath, a2 as trimPathRight, g as createControlledPromise, N as parseHref, p as executeRewriteInput, A as isDangerousProtocol, T as redirect, G as isRedirect, E as isNotFound, t as findSingleMatch, k as deepEqual, D as DEFAULT_PROTOCOL_ALLOWLIST, b as buildRouteBranch, y as interpolatePath, M as nullReplaceEqualDeep, V as replaceEqualDeep$1, K as last, j as decodePath, r as findFlatMatch, u as functionalUpdate$1, s as findRouteMatch, F as isPromise, z as invariant, _ as rootRouteId, a4 as useRouter, J as jsxRuntimeExports, S as reactExports, x as hasKeys, q as executeRewriteOutput, a as arraysEqual, O as Outlet, R as React, o as exactPathTest, U as removeTrailingSlash, C as isModuleNotFoundError, H as isServer, l as dummyMatchContext, L as matchContext, w as getDefaultExportFromCjs, n as escapeHtml, B as isInlinableStylesheet, v as getAssetCrossOrigin, a3 as useHydrated, a1 as trimPathLeft, I as joinPaths, W as requireReactDom, X as resolveManifestAssetLink, d as commonjsGlobal, m as encodePathLikeUrl } from "./server-CWnAiUxG.mjs";
 import "node:async_hooks";
 import "node:stream";
 import "node:stream/web";
@@ -26585,8 +26585,12 @@ function shouldShowDeprecationWarning() {
 }
 if (shouldShowDeprecationWarning()) console.warn("⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217");
 function createSupabaseClient() {
-  const SUPABASE_URL = "https://egptqfepqrrqdabshafn.supabase.co";
-  const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncHRxZmVwcXJycWRhYnNoYWZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwODkyNjIsImV4cCI6MjA5NDY2NTI2Mn0.Huu3-uynN2Y4fhps364Z1Zp8bzctgqnm3ME1BOz-EZ0";
+  const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || (typeof import.meta !== "undefined" ? "https://egptqfepqrrqdabshafn.supabase.co" : void 0);
+  const SUPABASE_PUBLISHABLE_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || (typeof import.meta !== "undefined" ? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncHRxZmVwcXJycWRhYnNoYWZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwODkyNjIsImV4cCI6MjA5NDY2NTI2Mn0.Huu3-uynN2Y4fhps364Z1Zp8bzctgqnm3ME1BOz-EZ0" : void 0);
+  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+    console.error(`[Supabase] Missing env vars — rendering without Supabase`);
+    return null;
+  }
   return createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
     auth: {
       storage: void 0,
@@ -26596,12 +26600,20 @@ function createSupabaseClient() {
   });
 }
 let _supabase;
-const supabase = new Proxy({}, {
-  get(_, prop, receiver) {
-    if (!_supabase) _supabase = createSupabaseClient();
-    return Reflect.get(_supabase, prop, receiver);
+const supabase = new Proxy(
+  {},
+  {
+    get(_, prop, receiver) {
+      if (!_supabase) _supabase = createSupabaseClient();
+      if (!_supabase)
+        return () => Promise.resolve({
+          data: null,
+          error: new Error("Supabase not configured")
+        });
+      return Reflect.get(_supabase, prop, receiver);
+    }
   }
-});
+);
 const AuthContext = reactExports.createContext(null);
 function AuthProvider({ children }) {
   const [session, setSession] = reactExports.useState(null);
@@ -26975,7 +26987,7 @@ function AppShell() {
     }
   );
 }
-const $$splitComponentImporter$5 = () => import("./services-sn0ZhWS5.mjs");
+const $$splitComponentImporter$5 = () => import("./services-Cn3yy2qm.mjs");
 const Route$5 = createFileRoute("/services")({
   head: () => ({
     meta: [{
@@ -26987,7 +26999,7 @@ const Route$5 = createFileRoute("/services")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-const $$splitComponentImporter$4 = () => import("./reviews-B8PjjeHS.mjs");
+const $$splitComponentImporter$4 = () => import("./reviews-BikePUyz.mjs");
 const Route$4 = createFileRoute("/reviews")({
   head: () => ({
     meta: [{
@@ -26999,7 +27011,7 @@ const Route$4 = createFileRoute("/reviews")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-const $$splitComponentImporter$3 = () => import("./login-CgrJrnYE.mjs");
+const $$splitComponentImporter$3 = () => import("./login-C5LET-3V.mjs");
 const Route$3 = createFileRoute("/login")({
   head: () => ({
     meta: [{
@@ -27008,7 +27020,7 @@ const Route$3 = createFileRoute("/login")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-const $$splitComponentImporter$2 = () => import("./booking-BRmE788C.mjs");
+const $$splitComponentImporter$2 = () => import("./booking-CWrONXHZ.mjs");
 const Route$2 = createFileRoute("/booking")({
   head: () => ({
     meta: [{
@@ -27020,7 +27032,7 @@ const Route$2 = createFileRoute("/booking")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-const $$splitComponentImporter$1 = () => import("./admin-DkTlikks.mjs");
+const $$splitComponentImporter$1 = () => import("./admin-DEhCgeEa.mjs");
 const Route$1 = createFileRoute("/admin")({
   head: () => ({
     meta: [{
@@ -27029,7 +27041,7 @@ const Route$1 = createFileRoute("/admin")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-const $$splitComponentImporter = () => import("./index-BZ0lVEOS.mjs");
+const $$splitComponentImporter = () => import("./index-r909Bzoe.mjs");
 const Route2 = createFileRoute("/")({
   head: () => ({
     meta: [{
